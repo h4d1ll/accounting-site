@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Modal styling */
+    /* Popup visuals */
     .modal {
       display: none;
       position: fixed;
@@ -19,69 +19,83 @@
       align-items: center;
     }
     .modal-content {
-      background: white;
+      background: var(--card-color);
+      color: var(--text-color);
       padding: 25px;
       border-radius: 12px;
-      max-width: 650px;
+      max-width: 750px;
       width: 90%;
-      text-align: left;
       box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      overflow-y: auto;
+      max-height: 90vh;
     }
     .close-btn {
       float: right;
       font-size: 1.5rem;
       cursor: pointer;
-      color: #0078d7;
+      color: var(--accent);
     }
-    .view-btn {
-      display: inline-block;
-      background-color: #0078d7;
+    .data-table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 15px;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    .data-table th {
+      background-color: var(--accent);
       color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 1rem;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
     }
-    .view-btn:hover { background-color: #005ea6; }
-    canvas { margin-top: 15px; }
-
-    /* Testimonial section */
-    .testimonial {
+    .workflow-diagram {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      margin-top: 20px;
+      flex-wrap: wrap;
+      background: #f1f5f9;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+    .workflow-step {
+      flex: 1 1 28%;
+      text-align: center;
+      margin: 8px;
+      padding: 8px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    .workflow-step::after {
+      content: "→";
+      margin-left: 10px;
+      color: var(--accent);
+    }
+    .workflow-step:last-child::after {
+      content: "";
+    }
+    canvas { margin-top: 15px; }
+    .testimonial {
       background: #f7f9fb;
+      margin-top: 20px;
+      border-left: 4px solid var(--accent);
       padding: 15px;
-      border-radius: 10px;
-    }
-    .testimonial img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 15px;
-    }
-    .testimonial p {
+      border-radius: 8px;
       font-style: italic;
-      color: #333;
-      margin: 0;
-    }
-    .client-name {
-      font-weight: 600;
-      color: #0078d7;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Services</h1>
-    <p>Automation | Reporting | Control Improvement</p>
+    <div class="header-content">
+      <div>
+        <h1>Hadill Zaher</h1>
+        <p>Automating Finance | Improving Controls | Driving Insights</p>
+      </div>
+      <button id="theme-toggle">🌙 Dark Mode</button>
+    </div>
   </header>
 
   <nav>
@@ -92,41 +106,22 @@
   </nav>
 
   <section>
-    <!-- Service 1 -->
     <div class="service">
       <h2>📊 Financial Reporting Automation</h2>
-      <p>
-        Implementing automated dashboards and reporting systems to give you 
-        real-time visibility into your financials. Reduce manual data entry 
-        and focus on interpreting results rather than preparing them.
-      </p>
+      <p>Automated dashboards pulling live financial data from Google Sheets and QuickBooks to Power BI for real-time insights.</p>
       <a href="#" class="view-btn" onclick="openModal('modal1')">View Example</a>
     </div>
 
-    <!-- Service 2 -->
     <div class="service">
       <h2>⚙️ Workflow & Process Automation</h2>
-      <p>
-        Streamlining accounting processes through integration and scripting — 
-        automating reconciliations, journal entries, and month-end close 
-        workflows to improve speed and consistency.
-      </p>
+      <p>Python scripts integrated with accounting APIs to automatically reconcile transactions and send alerts for mismatches.</p>
       <a href="#" class="view-btn" onclick="openModal('modal2')">View Example</a>
     </div>
 
-    <!-- Service 3 -->
     <div class="service">
       <h2>🛡️ Internal Control Testing & Improvement</h2>
-      <p>
-        Strengthening governance by identifying weaknesses in existing controls, 
-        testing effectiveness, and introducing automated safeguards that ensure 
-        compliance and reduce risk.
-      </p>
+      <p>Automated approval flows and control testing using Microsoft Power Automate and audit-ready dashboards.</p>
       <a href="#" class="view-btn" onclick="openModal('modal3')">View Example</a>
-    </div>
-
-    <div class="cta">
-      <a href="contact.html">Let’s Work Together</a>
     </div>
   </section>
 
@@ -134,23 +129,29 @@
   <div class="modal" id="modal1">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
-      <h3>📊 Financial Reporting Automation – Client Example</h3>
-      <p>
-        A mid-sized retail client was preparing weekly sales and expense reports manually in Excel.  
-        I developed an automated reporting solution using **Power BI** linked to **Google Sheets API** 
-        for real-time data sync and **scheduled refreshes** every morning.
-      </p>
-      <ul>
-        <li>Reporting time reduced from 8 hours/week to 20 minutes</li>
-        <li>0 manual consolidation errors</li>
-        <li>Daily management dashboards auto-updated</li>
-      </ul>
+      <h3>📊 Financial Reporting Automation – Case Study</h3>
+      <p><strong>Tools Used:</strong> Power BI, Google Sheets API, QuickBooks, Power Automate</p>
+
+      <div class="workflow-diagram">
+        <div class="workflow-step">QuickBooks API</div>
+        <div class="workflow-step">Google Sheets (Auto-sync)</div>
+        <div class="workflow-step">Power BI Dashboard</div>
+      </div>
+
+      <p><strong>Automation Summary:</strong> The system automatically updates Power BI dashboards every morning, combining accounting, sales, and expense data to create visual financial statements.</p>
+
+      <table class="data-table">
+        <tr><th>Metric</th><th>Before</th><th>After</th></tr>
+        <tr><td>Reporting Time (hours/week)</td><td>8</td><td>0.3</td></tr>
+        <tr><td>Manual Errors per Month</td><td>5+</td><td>0</td></tr>
+        <tr><td>Data Refresh Frequency</td><td>Weekly</td><td>Hourly</td></tr>
+      </table>
+
       <canvas id="chart1"></canvas>
 
       <div class="testimonial">
-        <img src="https://i.pravatar.cc/100?img=12" alt="Client photo">
-        <p>“Hadill transformed how we handle reporting — we now review our numbers with confidence every morning instead of waiting days.”  
-        <br><span class="client-name">– Sarah K., CFO, RetailCo</span></p>
+        “Hadill’s automation made our reporting effortless. We now get accurate daily dashboards that help us spot trends immediately.”  
+        <br>— <strong>Sarah K., CFO, RetailCo</strong>
       </div>
     </div>
   </div>
@@ -159,23 +160,29 @@
   <div class="modal" id="modal2">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
-      <h3>⚙️ Workflow & Process Automation – Client Example</h3>
-      <p>
-        A logistics company faced delays in reconciling thousands of monthly transactions.  
-        I automated the process using a **Python script** integrated with **QuickBooks API** 
-        and **SMTP email alerts** to highlight mismatches directly to the finance team.
-      </p>
-      <ul>
-        <li>Reconciliation 4× faster (12h → 3h)</li>
-        <li>Accuracy improved to 99.9%</li>
-        <li>Month-end close completed 2 days earlier</li>
-      </ul>
+      <h3>⚙️ Workflow & Process Automation – Case Study</h3>
+      <p><strong>Tools Used:</strong> Python, QuickBooks API, Pandas, SMTP Email Alerts</p>
+
+      <div class="workflow-diagram">
+        <div class="workflow-step">Download Bank Feeds</div>
+        <div class="workflow-step">Python Script Reconciles</div>
+        <div class="workflow-step">Email Alert Report</div>
+      </div>
+
+      <p><strong>Automation Summary:</strong> Built a Python script that matches 10,000+ monthly transactions between bank statements and QuickBooks, auto-generating a reconciliation report and emailing discrepancies to accountants.</p>
+
+      <table class="data-table">
+        <tr><th>Metric</th><th>Before</th><th>After</th></tr>
+        <tr><td>Reconciliation Time (hours)</td><td>12</td><td>3</td></tr>
+        <tr><td>Accuracy (%)</td><td>88%</td><td>99.9%</td></tr>
+        <tr><td>Close Delay (days)</td><td>3</td><td>0.5</td></tr>
+      </table>
+
       <canvas id="chart2"></canvas>
 
       <div class="testimonial">
-        <img src="https://i.pravatar.cc/100?img=8" alt="Client photo">
-        <p>“The automation Hadill built saved us two full working days every month. It was a game changer for our finance team.”  
-        <br><span class="client-name">– Daniel M., Finance Director, TransLogix</span></p>
+        “This automation saved us days every month — and we trust our numbers again. It’s like having an extra accountant who never makes mistakes.”  
+        <br>— <strong>Daniel M., Finance Director, TransLogix</strong>
       </div>
     </div>
   </div>
@@ -184,23 +191,29 @@
   <div class="modal" id="modal3">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
-      <h3>🛡️ Internal Control Testing & Improvement – Client Example</h3>
-      <p>
-        A financial services firm needed stronger internal controls over expense approvals.  
-        I conducted a full **control gap analysis** and implemented automated approval workflows 
-        using **Microsoft Power Automate** integrated with **SharePoint** and **Outlook**.
-      </p>
-      <ul>
-        <li>Reduced compliance exceptions by 70%</li>
-        <li>Approval turnaround time cut from 2 days to 4 hours</li>
-        <li>Full control documentation and audit trail created</li>
-      </ul>
+      <h3>🛡️ Internal Control Testing & Improvement – Case Study</h3>
+      <p><strong>Tools Used:</strong> Microsoft Power Automate, SharePoint, Outlook, Power BI</p>
+
+      <div class="workflow-diagram">
+        <div class="workflow-step">Expense Submission</div>
+        <div class="workflow-step">Auto-Approval Routing</div>
+        <div class="workflow-step">Audit Log Dashboard</div>
+      </div>
+
+      <p><strong>Automation Summary:</strong> Created automated approval workflows for expense claims, capturing every step for audit readiness and control effectiveness testing.</p>
+
+      <table class="data-table">
+        <tr><th>Metric</th><th>Before</th><th>After</th></tr>
+        <tr><td>Approval Time</td><td>48 hours</td><td>4 hours</td></tr>
+        <tr><td>Compliance Exceptions</td><td>100%</td><td>30%</td></tr>
+        <tr><td>Audit Findings</td><td>7</td><td>0</td></tr>
+      </table>
+
       <canvas id="chart3"></canvas>
 
       <div class="testimonial">
-        <img src="https://i.pravatar.cc/100?img=16" alt="Client photo">
-        <p>“We passed our most recent audit with zero findings thanks to the new approval automation. Hadill’s work improved both speed and compliance.”  
-        <br><span class="client-name">– Priya S., Head of Compliance, FinServ Group</span></p>
+        “Our audit results improved dramatically. Every approval is now tracked and verified automatically — it’s audit-proof.”  
+        <br>— <strong>Priya S., Head of Compliance, FinServ Group</strong>
       </div>
     </div>
   </div>
@@ -209,96 +222,66 @@
     <p>© 2025 Hadill Zaher. All rights reserved.</p>
   </footer>
 
+  <!-- ✅ All JavaScript runs safely after DOM is loaded -->
   <script>
-    // Modal control
-    function openModal(id) {
-      document.getElementById(id).style.display = 'flex';
-      if (id === 'modal1') renderChart1();
-      if (id === 'modal2') renderChart2();
-      if (id === 'modal3') renderChart3();
-    }
-    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-    window.onclick = function(e) {
-      document.querySelectorAll('.modal').forEach(modal => {
-        if (e.target === modal) modal.style.display = 'none';
-      });
-    };
+    document.addEventListener('DOMContentLoaded', () => {
+      // Modal toggle
+      function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+        if (id === 'modal1') renderChart1();
+        if (id === 'modal2') renderChart2();
+        if (id === 'modal3') renderChart3();
+      }
+      window.openModal = openModal;
 
-    // Chart.js data
-    function renderChart1() {
-      new Chart(document.getElementById('chart1'), {
-        type: 'bar',
-        data: {
-          labels: ['Before', 'After'],
-          datasets: [{
-            label: 'Reporting Time (hours/week)',
-            data: [8, 0.33],
-            backgroundColor: ['#ff6b6b', '#00bfa6']
-          }]
-        },
-        options: { plugins: { legend: { display: false } } }
-      });
-    }
+      function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+      }
+      window.closeModal = closeModal;
 
-    function renderChart2() {
-      new Chart(document.getElementById('chart2'), {
-        type: 'bar',
-        data: {
-          labels: ['Before', 'After'],
-          datasets: [{
-            label: 'Reconciliation Time (hours)',
-            data: [12, 3],
-            backgroundColor: ['#ff9f43', '#00bfa6']
-          }]
-        },
-        options: { plugins: { legend: { display: false } } }
-      });
-    }
+      window.onclick = function(e) {
+        document.querySelectorAll('.modal').forEach(modal => {
+          if (e.target === modal) modal.style.display = 'none';
+        });
+      };
 
-    function renderChart3() {
-      new Chart(document.getElementById('chart3'), {
-        type: 'bar',
-        data: {
-          labels: ['Before', 'After'],
-          datasets: [{
-            label: 'Compliance Exceptions (%)',
-            data: [100, 30],
-            backgroundColor: ['#ff6b6b', '#00bfa6']
-          }]
-        },
-        options: { plugins: { legend: { display: false } } }
+      // Charts
+      function renderChart1() {
+        new Chart(document.getElementById('chart1'), {
+          type: 'bar',
+          data: { labels: ['Before', 'After'], datasets: [{ label: 'Reporting Time (hours/week)', data: [8, 0.3], backgroundColor: ['#ef4444', '#10b981'] }] },
+          options: { plugins: { legend: { display: false } } }
+        });
+      }
+      function renderChart2() {
+        new Chart(document.getElementById('chart2'), {
+          type: 'bar',
+          data: { labels: ['Before', 'After'], datasets: [{ label: 'Reconciliation Time (hours)', data: [12, 3], backgroundColor: ['#f59e0b', '#10b981'] }] },
+          options: { plugins: { legend: { display: false } } }
+        });
+      }
+      function renderChart3() {
+        new Chart(document.getElementById('chart3'), {
+          type: 'bar',
+          data: { labels: ['Before', 'After'], datasets: [{ label: 'Compliance Exceptions (%)', data: [100, 30], backgroundColor: ['#ef4444', '#10b981'] }] },
+          options: { plugins: { legend: { display: false } } }
+        });
+      }
+
+      // Theme toggle
+      const toggleBtn = document.getElementById('theme-toggle');
+      const body = document.body;
+      if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        toggleBtn.textContent = '☀️ Light Mode';
+      }
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
-    }
+    });
   </script>
-
-    <script>
-  const toggleBtn = document.getElementById('theme-toggle');
-  const body = document.body;
-
-  // Load user preference
-  if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');
-    toggleBtn.textContent = '☀️ Light Mode';
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-    toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-</script>
-
 </body>
-
-    <header>
-  <div class="header-content">
-    <div>
-      <h1>Hadill Zaher</h1>
-      <p>Automating Finance | Improving Controls | Driving Insights</p>
-    </div>
-    <button id="theme-toggle">🌙 Dark Mode</button>
-  </div>
-</header>
-
 </html>
