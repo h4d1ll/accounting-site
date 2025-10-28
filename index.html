@@ -8,8 +8,13 @@
 </head>
 <body>
   <header>
-    <h1>Hadill Zaher</h1>
-    <p>Automating Finance | Improving Controls | Driving Insights</p>
+    <div class="header-content">
+      <div>
+        <h1>Hadill Zaher</h1>
+        <p>Automated Accounting Solutions | Financial Reporting | Workflow Optimisation</p>
+      </div>
+      <button id="theme-toggle">🌙 Dark Mode</button>
+    </div>
   </header>
 
   <nav>
@@ -22,47 +27,38 @@
   <section>
     <h2>Empowering Businesses with Automated Accounting</h2>
     <p>
-      I help businesses modernize their accounting processes through automation, 
-      real-time financial reporting, and enhanced internal controls. My solutions 
-      improve accuracy, save time, and provide insights that drive better decisions.
+      I help businesses modernise their accounting processes through automation, real-time financial reporting,
+      and enhanced internal controls. My solutions improve accuracy, save time and deliver actionable insights.
     </p>
     <div class="cta">
       <a href="services.html">Explore My Services</a>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Hadill Zaher. All rights reserved.</p>
-  </footer>
-
+  <!-- ✅ Working dark mode script -->
   <script>
-  const toggleBtn = document.getElementById('theme-toggle');
-  const body = document.body;
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const body = document.body;
 
-  // Load user preference
-  if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');
-    toggleBtn.textContent = '☀️ Light Mode';
-  }
+      // Load saved theme
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        toggleBtn.textContent = '☀️ Light Mode';
+      } else {
+        toggleBtn.textContent = '🌙 Dark Mode';
+      }
 
-  toggleBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-    toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-</script>
-
+      // Toggle and save theme
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    });
+  </script>
 </body>
-
-  <header>
-  <div class="header-content">
-    <div>
-      <h1>Hadill Zaher</h1>
-      <p>Automating Finance | Improving Controls | Driving Insights</p>
-    </div>
-    <button id="theme-toggle">🌙 Dark Mode</button>
-  </div>
-</header>
-
 </html>
+

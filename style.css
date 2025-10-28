@@ -1,35 +1,32 @@
 :root {
-  --bg-color: #f9fafb;
+  --bg-color: #f4f6f8;
   --card-color: #ffffff;
-  --text-color: #111827;
-  --accent: #0ea5e9;
-  --accent-secondary: #10b981;
+  --text-color: #1f2937;
+  --accent: #007acc; /* pulled from your CV site blue */
+  --accent-secondary: #00bfa5;
 }
 
 body.dark-mode {
-  --bg-color: #111827;
-  --card-color: #1f2937;
-  --text-color: #f3f4f6;
+  --bg-color: #0f172a;
+  --card-color: #1e293b;
+  --text-color: #e2e8f0;
   --accent: #38bdf8;
   --accent-secondary: #34d399;
 }
 
-/* General layout */
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 header {
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-  color: #fff;
+  color: white;
   text-align: center;
-  padding: 50px 20px;
-  position: relative;
+  padding: 70px 20px;
 }
 
 .header-content {
@@ -41,18 +38,18 @@ header {
 }
 
 #theme-toggle {
-  background-color: #ffffff22;
-  border: 1px solid #ffffff55;
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: 6px;
-  color: #fff;
+  color: white;
   padding: 8px 14px;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: background 0.3s;
+  transition: background-color .3s;
 }
 
 #theme-toggle:hover {
-  background-color: #ffffff44;
+  background: rgba(255,255,255,0.35);
 }
 
 nav {
@@ -60,7 +57,6 @@ nav {
   display: flex;
   justify-content: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: background 0.3s ease;
 }
 
 nav a {
@@ -77,31 +73,10 @@ nav a:hover, nav a.active {
 }
 
 section {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 60px auto;
   padding: 0 20px;
-}
-
-h2, h3 {
-  color: var(--accent);
-}
-
-.service {
-  background: var(--card-color);
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-  transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.service:hover {
-  transform: translateY(-4px);
-}
-
-.cta {
   text-align: center;
-  margin-top: 40px;
 }
 
 .cta a {
@@ -111,34 +86,13 @@ h2, h3 {
   border-radius: 6px;
   text-decoration: none;
   font-size: 1.1rem;
-  transition: background-color 0.3s ease;
+  transition: background-color .3s ease;
 }
 
 .cta a:hover {
   background-color: var(--accent-secondary);
 }
 
-footer {
-  background-color: var(--card-color);
-  color: var(--text-color);
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9rem;
-  border-top: 1px solid #e5e7eb;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Dark mode toggle animation */
-body.dark-mode footer {
-  border-color: #374151;
-}
-
-.contact-form, .modal-content {
-  background: var(--card-color);
-  color: var(--text-color);
-}
-
-/* Mobile adjustments */
 @media (max-width: 700px) {
   .header-content {
     flex-direction: column;
