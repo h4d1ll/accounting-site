@@ -7,16 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <div class="header-content">
       <div>
         <h1>Hadill Zaher</h1>
-        <p>Automated Accounting Solutions | Financial Reporting | Workflow Optimisation</p>
+        <p>Automating Finance | Improving Controls | Driving Insights</p>
       </div>
       <button id="theme-toggle">🌙 Dark Mode</button>
     </div>
   </header>
 
+  <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
@@ -24,18 +26,25 @@
     <a href="contact.html">Contact</a>
   </nav>
 
+  <!-- MAIN CONTENT -->
   <section>
     <h2>Empowering Businesses with Automated Accounting</h2>
     <p>
       I help businesses modernise their accounting processes through automation, real-time financial reporting,
-      and enhanced internal controls. My solutions improve accuracy, save time and deliver actionable insights.
+      and enhanced internal controls. My solutions improve accuracy, save time, and provide insights that drive
+      better decisions.
     </p>
     <div class="cta">
       <a href="services.html">Explore My Services</a>
     </div>
   </section>
 
-  <!-- ✅ Working dark mode script -->
+  <!-- ✅ Removed the duplicate “Hadill Zaher” footer section -->
+  <footer style="text-align:center; padding:20px; color:var(--text-color); background:none;">
+    <p style="font-size:0.9rem;">© 2025 Hadill Zaher. All rights reserved.</p>
+  </footer>
+
+  <!-- DARK MODE SCRIPT -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const toggleBtn = document.getElementById('theme-toggle');
@@ -46,8 +55,6 @@
       if (currentTheme === 'dark') {
         body.classList.add('dark-mode');
         toggleBtn.textContent = '☀️ Light Mode';
-      } else {
-        toggleBtn.textContent = '🌙 Dark Mode';
       }
 
       // Toggle and save theme
