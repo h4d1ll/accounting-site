@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Hadill Zaher</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Contact</h1>
+    <p>Let’s build smarter accounting systems together</p>
+  </header>
+
+  <nav>
+    <a href="index2.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+
+  <section>
+    <h2>Get in Touch</h2>
+    <p>
+      Have a project in mind? Let’s discuss how I can help you automate your 
+      accounting processes and strengthen your financial reporting.
+    </p>
+
+    <!-- ✅ Contact Form via Formspree -->
+    <form action="https://formspree.io/f/yourFormID" method="POST" class="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" placeholder="Your email" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Your message..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <p class="alt-contact">
+      Or reach me directly at <a href="mailto:hadillzaher@example.com">hadillzaher@example.com</a>  
+      or on <a href="https://linkedin.com/in/hadillzaher" target="_blank">LinkedIn</a>.
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Hadill Zaher. All rights reserved.</p>
+  </footer>
+</body>
+</html>
