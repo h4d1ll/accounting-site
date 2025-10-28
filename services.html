@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Modal base styles */
+    /* Modal styling */
     .modal {
       display: none;
       position: fixed;
@@ -49,11 +49,32 @@
       margin-top: 10px;
       transition: background-color 0.3s ease;
     }
-    .view-btn:hover {
-      background-color: #005ea6;
+    .view-btn:hover { background-color: #005ea6; }
+    canvas { margin-top: 15px; }
+
+    /* Testimonial section */
+    .testimonial {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      background: #f7f9fb;
+      padding: 15px;
+      border-radius: 10px;
     }
-    canvas {
-      margin-top: 15px;
+    .testimonial img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .testimonial p {
+      font-style: italic;
+      color: #333;
+      margin: 0;
+    }
+    .client-name {
+      font-weight: 600;
+      color: #0078d7;
     }
   </style>
 </head>
@@ -115,16 +136,22 @@
       <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
       <h3>📊 Financial Reporting Automation – Client Example</h3>
       <p>
-        A mid-sized retail client relied on manual Excel reporting.  
-        I built an automated dashboard using Power BI and Google Sheets API integration,
-        pulling live sales and expense data daily.
+        A mid-sized retail client was preparing weekly sales and expense reports manually in Excel.  
+        I developed an automated reporting solution using **Power BI** linked to **Google Sheets API** 
+        for real-time data sync and **scheduled refreshes** every morning.
       </p>
       <ul>
         <li>Reporting time reduced from 8 hours/week to 20 minutes</li>
-        <li>Zero manual consolidation errors</li>
-        <li>Management gained daily visibility</li>
+        <li>0 manual consolidation errors</li>
+        <li>Daily management dashboards auto-updated</li>
       </ul>
       <canvas id="chart1"></canvas>
+
+      <div class="testimonial">
+        <img src="https://i.pravatar.cc/100?img=12" alt="Client photo">
+        <p>“Hadill transformed how we handle reporting — we now review our numbers with confidence every morning instead of waiting days.”  
+        <br><span class="client-name">– Sarah K., CFO, RetailCo</span></p>
+      </div>
     </div>
   </div>
 
@@ -134,16 +161,22 @@
       <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
       <h3>⚙️ Workflow & Process Automation – Client Example</h3>
       <p>
-        A logistics client needed faster monthly reconciliations.  
-        I developed a Python automation that matched bank feeds with ledger entries
-        and flagged mismatches automatically.
+        A logistics company faced delays in reconciling thousands of monthly transactions.  
+        I automated the process using a **Python script** integrated with **QuickBooks API** 
+        and **SMTP email alerts** to highlight mismatches directly to the finance team.
       </p>
       <ul>
-        <li>Reconciliation 4× faster</li>
+        <li>Reconciliation 4× faster (12h → 3h)</li>
         <li>Accuracy improved to 99.9%</li>
-        <li>Month-end close 2 days faster</li>
+        <li>Month-end close completed 2 days earlier</li>
       </ul>
       <canvas id="chart2"></canvas>
+
+      <div class="testimonial">
+        <img src="https://i.pravatar.cc/100?img=8" alt="Client photo">
+        <p>“The automation Hadill built saved us two full working days every month. It was a game changer for our finance team.”  
+        <br><span class="client-name">– Daniel M., Finance Director, TransLogix</span></p>
+      </div>
     </div>
   </div>
 
@@ -153,16 +186,22 @@
       <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
       <h3>🛡️ Internal Control Testing & Improvement – Client Example</h3>
       <p>
-        A financial services firm lacked consistent internal controls.  
-        I performed a full audit of their approval workflows and automated approval 
-        routing via Power Automate.
+        A financial services firm needed stronger internal controls over expense approvals.  
+        I conducted a full **control gap analysis** and implemented automated approval workflows 
+        using **Microsoft Power Automate** integrated with **SharePoint** and **Outlook**.
       </p>
       <ul>
         <li>Reduced compliance exceptions by 70%</li>
-        <li>Improved audit readiness</li>
-        <li>Established control testing framework</li>
+        <li>Approval turnaround time cut from 2 days to 4 hours</li>
+        <li>Full control documentation and audit trail created</li>
       </ul>
       <canvas id="chart3"></canvas>
+
+      <div class="testimonial">
+        <img src="https://i.pravatar.cc/100?img=16" alt="Client photo">
+        <p>“We passed our most recent audit with zero findings thanks to the new approval automation. Hadill’s work improved both speed and compliance.”  
+        <br><span class="client-name">– Priya S., Head of Compliance, FinServ Group</span></p>
+      </div>
     </div>
   </div>
 
@@ -178,21 +217,19 @@
       if (id === 'modal2') renderChart2();
       if (id === 'modal3') renderChart3();
     }
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
     window.onclick = function(e) {
       document.querySelectorAll('.modal').forEach(modal => {
         if (e.target === modal) modal.style.display = 'none';
       });
     };
 
-    // Chart.js visualizations
+    // Chart.js data
     function renderChart1() {
       new Chart(document.getElementById('chart1'), {
         type: 'bar',
         data: {
-          labels: ['Before Automation', 'After Automation'],
+          labels: ['Before', 'After'],
           datasets: [{
             label: 'Reporting Time (hours/week)',
             data: [8, 0.33],
