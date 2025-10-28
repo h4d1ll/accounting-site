@@ -36,7 +36,91 @@ header {
   text-align: center;
   padding: 70px 20px;
   position: relative;
+}       
+
+/* ===== HEADER (CV Site Style) ===== */
+.main-header {
+  background: var(--gradient);
+  color: white;
+  text-align: center;
+  padding: 100px 20px 60px;
+  position: relative;
+  overflow: hidden;
 }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.intro {
+  flex: 1;
+  text-align: left;
+}
+
+.hero-name {
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.5px;
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.9;
+  color: #e0f2f1;
+  margin-top: 8px;
+}
+
+/* Make header center nicely on smaller screens */
+@media (max-width: 800px) {
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .intro {
+    text-align: center;
+  }
+  #theme-toggle {
+    margin-top: 20px;
+  }
+}
+
+/* ===== NAVIGATION ===== */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  background-color: var(--card-color);
+  padding: 14px 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.nav-link {
+  color: var(--accent);
+  text-decoration: none;
+  padding: 12px 25px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  transform: translateY(-2px);
+}
+
 
 .header-content {
   display: flex;
