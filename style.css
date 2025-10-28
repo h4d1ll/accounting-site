@@ -22,6 +22,7 @@ body {
   transition: background-color .3s ease, color .3s ease;
 }
 
+/* HEADER */
 header {
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
   color: white;
@@ -37,6 +38,7 @@ header {
   margin: auto;
 }
 
+/* THEME TOGGLE */
 #theme-toggle {
   background: rgba(255,255,255,0.2);
   border: 1px solid rgba(255,255,255,0.5);
@@ -52,6 +54,7 @@ header {
   background: rgba(255,255,255,0.35);
 }
 
+/* NAVIGATION */
 nav {
   background-color: var(--card-color);
   display: flex;
@@ -66,12 +69,14 @@ nav a {
   font-weight: 500;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
   background-color: var(--accent);
   color: white;
   border-radius: 4px;
 }
 
+/* MAIN SECTION */
 section {
   max-width: 900px;
   margin: 60px auto;
@@ -79,6 +84,7 @@ section {
   text-align: center;
 }
 
+/* CTA BUTTON */
 .cta a {
   background-color: var(--accent);
   color: white;
@@ -93,13 +99,33 @@ section {
   background-color: var(--accent-secondary);
 }
 
+/* TESTIMONIAL (with sleeker visual + glow) */
+.testimonial {
+  background: #f7f9fb;
+  color: #1f2937;
+  margin-top: 20px;
+  border-left: 4px solid var(--accent);
+  padding: 15px;
+  border-radius: 8px;
+  font-style: italic;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .testimonial {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #e2e8f0;
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+/* RESPONSIVE HEADER */
 @media (max-width: 700px) {
   .header-content {
     flex-direction: column;
     text-align: center;
   }
+
   #theme-toggle {
     margin-top: 10px;
   }
 }
-
